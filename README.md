@@ -1,5 +1,5 @@
 # HumKin Server
-Node server for HumKin, Open BloodBank Management System
+Node server for [HumKin](https://github.com/haxzie/humkin), Open BloodBank Management System
 
 Make sure Node.js and npm are updated
 
