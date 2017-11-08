@@ -1,12 +1,12 @@
 var mysql = require('mysql');
 var config = require('./dbconfig.json');
-var db;
+var connection;
 
 module.exports = () => {
-    if (!db) {
-        db = mysql.createConnection(config);
+    if (!connection) {
+        connection = mysql.createConnection(config);
 
-        db.connect(function(err){
+        connection.connect(function(err){
             if(!err) {
                 console.log('Database is connected!');
             } else {
@@ -14,5 +14,5 @@ module.exports = () => {
             }
         });
     }
-    return db;
+    return connection;
 }

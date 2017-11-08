@@ -8,6 +8,7 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 
 var signup = require('./routes/signup');
+var testit = require('./routes/testit');
 
 let app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -29,6 +30,14 @@ app.post('/', (req, res) => {
 
 });
 
+app.get('/', (req, res)=>{
+    res.status(200).send('Success')
+})
+
+app.get('/test', (req, res) => {
+    console.log(req.query.pack)
+    testit(req,res);
+});
 app.post('/signup', signup);
 
 app.listen(8081, () => {
