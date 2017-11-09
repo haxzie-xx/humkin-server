@@ -1,14 +1,13 @@
-/**
- * Created by Haxzie on 02/09/2017
- */
 
 var express = require('express');
 var mysql = require('mysql');
 var db = require('./db');
 var bodyParser = require('body-parser');
-
 var signup = require('./routes/signup');
-var testit = require('./routes/testit');
+var login = require('./routes/login');
+
+//Running Port
+const port = 8080;
 
 let app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -31,15 +30,13 @@ app.post('/', (req, res) => {
 });
 
 app.get('/', (req, res)=>{
-    res.status(200).send('Success')
+    res.status(200).send('Server Online!')
 })
 
-app.get('/test', (req, res) => {
-    console.log(req.query.pack)
-    testit(req,res);
-});
 app.post('/signup', signup);
+app.post('/login', login);
 
-app.listen(8081, () => {
-    console.log('Server running at localhost:8080');
+
+app.listen(port, () => {
+    console.log('Server running at localhost:'+port);
 });
