@@ -5,7 +5,8 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
-
+var createDonor = require('./routes/createDonor');
+var allDonors = require('./routes/allDonors');
 //Running Port
 const port = 8080;
 
@@ -35,6 +36,8 @@ app.get('/', (req, res)=>{
 
 app.post('/signup', signup);
 app.post('/login', login);
+app.post('/create_donor', createDonor);
+app.get('/all_donors', allDonors);
 
 
 app.listen(port, () => {

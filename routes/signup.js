@@ -3,7 +3,8 @@ var db = require('../db')();
 module.exports = (req, res) => {
     console.log(JSON.stringify(req.body.bb_address));
 
-    data = req.body
+    data = req.body;
+    
     let insertbb = 'INSERT INTO bloodbank (name, email, phone, city, address, pincode) VALUES(\''+
                     data.bb_name+'\', \''+
                     data.bb_email+'\', \''+
@@ -24,12 +25,12 @@ module.exports = (req, res) => {
         if(error) throw error;
 
         insertmgr = insertmgr+results.insertId+')';
-        console.log(insertmgr)
+        console.log(insertmgr);
         db.query(insertmgr, (error, results, fields) => {
-            if(error) throw error
-            console.log(results)
-        })
-    })
+            if(error) throw error;
+            console.log(results);
+        });
+    });
     
     res.status(200).json({ 'message': 'success'});
 }
