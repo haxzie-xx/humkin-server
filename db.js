@@ -4,6 +4,7 @@ var connection;
 
 module.exports = () => {
     if (!connection) {
+        console.log('initializing connection...')
         connection = mysql.createConnection(config);
 
         connection.connect(function(err){

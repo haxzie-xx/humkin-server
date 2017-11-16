@@ -5,10 +5,33 @@ var db = require('./db');
 var bodyParser = require('body-parser');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
-var createDonor = require('./routes/createDonor');
-var allDonors = require('./routes/allDonors');
+//donor imports
+var createDonor = require('./routes/donor/createDonor');
+var allDonors = require('./routes/donor/allDonors');
+var donorDetails = require('./routes/donor/donorDetails');
+var deleteReg = require('./routes/donor/deleteRegistration');
+var checkAdhaar = require('./routes/donor/checkAdhaar');
+var addToRegistry = require('./routes/donor/addToRegistry');
+var updateDonor = require('./routes/donor/updateDonor');
+//nurses imports
+var createNurse = require('./routes/nurses/createNurse');
+var checkNurseEmail = require('./routes/nurses/checkNurseEmail');
+var allNurses = require('./routes/nurses/allNurses');
+var nurseDetails = require('./routes/nurses/nurseDetails');
+var updateNurse = require('./routes/nurses/updateNurse');
+var deleteNurse = require('./routes/nurses/deleteNurse');
+var checkNurseId = require('./routes/nurses/checkNurseId');
+//Storage imports
+var storageDetails = require('./routes/storage/storageDetails');
+//donation imports
+var checkRegDonor = require('./routes/donation/checkRegDonor');
+var createDonaion = require('./routes/donation/newDonation');
+var donationRecord = require('./routes/donation/donationRecord');
+//camps imports
+var createCamp = require('./routes/camps/createCamp');
+
 //Running Port
-const port = 8080;
+const port = 8081;
 
 let app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -36,10 +59,32 @@ app.get('/', (req, res)=>{
 
 app.post('/signup', signup);
 app.post('/login', login);
+
+//donor apis
 app.post('/create_donor', createDonor);
-app.get('/all_donors', allDonors);
+app.get('/all_donors/:bbid', allDonors);
+app.get('/donor_details/:bbid/:adhaar', donorDetails );
+app.post('/delete_donor', deleteReg );
+app.post('/check_adhaar', checkAdhaar);
+app.post('/add_to_registry', addToRegistry);
+app.post('/update_donor', updateDonor);
 
-
+//nurses apis
+app.post('/create_nurse', createNurse);
+app.post('/check_nurse_email', checkNurseEmail);
+app.get('/all_nurses/:bbid', allNurses);
+app.get('/nurse_details/:bbid/:nid', nurseDetails);
+app.post('/update_nurse', updateNurse);
+app.post('/delete_nurse', deleteNurse );
+app.post('/check_nurse_id', checkNurseId);
+//Storage Api
+app.get('/storage_details/:bbid', storageDetails);
+//donation apis
+app.post('/check_registered_donor', checkRegDonor);
+app.post('/create_donation', createDonaion);
+app.post('/donation_record/:bbid', donationRecord);
+//camp apis
+app.post('/create_camp', createCamp);
 app.listen(port, () => {
     console.log('Server running at localhost:'+port);
 });
