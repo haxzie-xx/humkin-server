@@ -9,14 +9,13 @@ module.exports = (req, res) =>{
     let dparts = data.date.split('/');
 
     //query to add to donor table
-    donor_query = 'insert into camps(bbid, name, caption, cdate, phone, location, address, phone) ';
+    donor_query = 'insert into camps(bbid, name, cdate, phone, location) ';
     donor_query += 'values(';
     donor_query += data.bbid+', ';
     donor_query += '\''+data.name+'\', ';
-    donor_query += '\''+data.caption+'\', ';
-    donor_query += '\''+dparts[2]+'-'+dparts[1]+'-'+dparts[0]+'\', ';    donor_query += '\''+data.phone+'\', ';
-    donor_query += '\''+data.location+'\', ';
-    donor_query += '\''+data.address+'\')';
+    donor_query += '\''+dparts[2]+'-'+dparts[1]+'-'+dparts[0]+'\', ';    
+    donor_query += '\''+data.phone+'\', ';
+    donor_query += '\''+data.location+'\')';
 
     //adding the camp to camps table
     db.query(donor_query, (error, results, fields) =>{

@@ -29,6 +29,10 @@ var createDonaion = require('./routes/donation/newDonation');
 var donationRecord = require('./routes/donation/donationRecord');
 //camps imports
 var createCamp = require('./routes/camps/createCamp');
+var allCamps = require('./routes/camps/allCamps');
+var updateCamp = require('./routes/camps/EditCamp');
+var deleteCamp = require('./routes/camps/DeleteCamp');
+var campDetails = require('./routes/camps/campDetails');
 
 //Running Port
 const port = 8081;
@@ -85,6 +89,14 @@ app.post('/create_donation', createDonaion);
 app.post('/donation_record/:bbid', donationRecord);
 //camp apis
 app.post('/create_camp', createCamp);
+app.post('/all_camps/:bbid', allCamps);
+app.post('/update_camp', updateCamp);
+app.post('/delete_camp', deleteCamp );
+app.get('/camp_details/:bbid/:camp_id', campDetails);
+
+
+
+
 app.listen(port, () => {
     console.log('Server running at localhost:'+port);
 });
