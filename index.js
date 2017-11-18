@@ -33,6 +33,17 @@ var allCamps = require('./routes/camps/allCamps');
 var updateCamp = require('./routes/camps/EditCamp');
 var deleteCamp = require('./routes/camps/DeleteCamp');
 var campDetails = require('./routes/camps/campDetails');
+//hospital apis
+var createHospital = require('./routes/hospitals/createHospital');
+var hospitalDetails = require('./routes/hospitals/hospitalDetails');
+var updateHospital = require('./routes/hospitals/updateHospital');
+var deleteHospital = require('./routes/hospitals/deleteHospital');
+var allHospitals = require('./routes/hospitals/allHospitals');
+var checkHName  = require('./routes/hospitals/checkHName');
+
+//home page imports
+var campList = require('./routes/campList');
+var bloodbanks = require('./routes/bloodBanks');
 
 //Running Port
 const port = 8081;
@@ -63,6 +74,8 @@ app.get('/', (req, res)=>{
 
 app.post('/signup', signup);
 app.post('/login', login);
+app.get('/camp_list',campList)
+app.post('/bloodbanks', bloodbanks);
 
 //donor apis
 app.post('/create_donor', createDonor);
@@ -93,8 +106,13 @@ app.post('/all_camps/:bbid', allCamps);
 app.post('/update_camp', updateCamp);
 app.post('/delete_camp', deleteCamp );
 app.get('/camp_details/:bbid/:camp_id', campDetails);
-
-
+//hospital apis
+app.post('/create_hospital', createHospital);
+app.get('/all_hospitals/:bbid', allHospitals);
+app.post('/update_hospital', updateHospital);
+app.post('/delete_hospital', deleteHospital );
+app.post('/check_hospital_name', checkHName);
+app.get('/hospital_details/:bbid/:hid', hospitalDetails);
 
 
 app.listen(port, () => {
