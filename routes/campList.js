@@ -4,7 +4,7 @@ module.exports = (req, res) =>{
 
     console.log('new Request '+JSON.stringify(req.params));
     
-        let _query = 'select camp_id, name, phone, location, DATE_FORMAT(cdate, \'%d/%m/%Y\')  as cdate from camps order by cdate';
+        let _query = 'select camp_id, name, phone, location, DATE_FORMAT(cdate, \'%d/%m/%Y\')  as cdate from camps where cdate > NOW() order by cdate';
             db.query(_query, (error, results, fields) => {
                 if(error) {
                     res.status(400).sennd(error);

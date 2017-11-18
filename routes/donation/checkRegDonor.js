@@ -4,7 +4,7 @@ module.exports = (req, res) => {
 
     console.log('check user : '+req.body.adhaar);
     if(req.body.adhaar && req.body.bbid ){
-        db.query('select * from donor where adhaar = \''+req.body.adhaar+'\' and bbid = '+req.body.bbid, (error, results, fields) => {
+        db.query('select d.blood from donor d, registry r where r.adhaar = \''+req.body.adhaar+'\' and r.adhaar = d.adhaar and r.bbid = '+req.body.bbid, (error, results, fields) => {
             if(error) throw error;
 
             console.log(results);

@@ -40,14 +40,25 @@ var updateHospital = require('./routes/hospitals/updateHospital');
 var deleteHospital = require('./routes/hospitals/deleteHospital');
 var allHospitals = require('./routes/hospitals/allHospitals');
 var checkHName  = require('./routes/hospitals/checkHName');
-
+//transfer imports
+var allTransferRecords = require('./routes/transfer/all_records');
+var transferDetails = require('./routes/transfer/transferDetails');
+var updateTransfer = require('./routes/transfer/updateTransfer');
+var deleteTransfer = require('./routes/transfer/deleteRecord');
+var createTransfer = require('./routes/transfer/createTransfer');
+var checkHid = require('./routes/transfer/checkHID');
 //home page imports
 var campList = require('./routes/campList');
 var bloodbanks = require('./routes/bloodBanks');
+var allCities = require('./routes/allCities');
+
+//bloodbank apis
+var bbdetails = require('./routes/bloodBanks/bloodbankDetails');
+var transferRequest = require('./routes/bloodBanks/transferRequest');
 
 //Running Port
-const port = 8081;
 
+const port = 8080;
 let app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({
@@ -76,6 +87,11 @@ app.post('/signup', signup);
 app.post('/login', login);
 app.get('/camp_list',campList)
 app.post('/bloodbanks', bloodbanks);
+app.get('/all_cities', allCities);
+
+//bloodbank apis
+app.get('/bbdetails/:bbid', bbdetails);
+app.post('/transfer_request', transferRequest);
 
 //donor apis
 app.post('/create_donor', createDonor);
@@ -86,6 +102,7 @@ app.post('/check_adhaar', checkAdhaar);
 app.post('/add_to_registry', addToRegistry);
 app.post('/update_donor', updateDonor);
 
+
 //nurses apis
 app.post('/create_nurse', createNurse);
 app.post('/check_nurse_email', checkNurseEmail);
@@ -94,18 +111,22 @@ app.get('/nurse_details/:bbid/:nid', nurseDetails);
 app.post('/update_nurse', updateNurse);
 app.post('/delete_nurse', deleteNurse );
 app.post('/check_nurse_id', checkNurseId);
+
 //Storage Api
 app.get('/storage_details/:bbid', storageDetails);
+
 //donation apis
 app.post('/check_registered_donor', checkRegDonor);
 app.post('/create_donation', createDonaion);
 app.post('/donation_record/:bbid', donationRecord);
+
 //camp apis
 app.post('/create_camp', createCamp);
 app.post('/all_camps/:bbid', allCamps);
 app.post('/update_camp', updateCamp);
 app.post('/delete_camp', deleteCamp );
 app.get('/camp_details/:bbid/:camp_id', campDetails);
+
 //hospital apis
 app.post('/create_hospital', createHospital);
 app.get('/all_hospitals/:bbid', allHospitals);
@@ -114,6 +135,13 @@ app.post('/delete_hospital', deleteHospital );
 app.post('/check_hospital_name', checkHName);
 app.get('/hospital_details/:bbid/:hid', hospitalDetails);
 
+//transfer apis
+app.get('/all_records/:bbid',allTransferRecords);
+app.get('/transfer_details/:bbid/:tid', transferDetails);
+app.post('/update_transfer',updateTransfer);
+app.post('/delete_transfer', deleteTransfer);
+app.post('/create_transfer', createTransfer);
+app.get('/check_hid/:hid', checkHid);
 
 app.listen(port, () => {
     console.log('Server running at localhost:'+port);

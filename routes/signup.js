@@ -29,8 +29,9 @@ module.exports = (req, res) => {
         db.query(insertmgr, (error, results, fields) => {
             if(error) throw error;
             console.log(results);
+            res.status(200).json({ 'message': 'success'});
         });
     });
     
-    res.status(200).json({ 'message': 'success'});
+    
 }
