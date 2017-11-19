@@ -8,7 +8,7 @@ module.exports = (req, res) => {
         bbquery += 'm.fname as mfname, m.lname as mlname, m.email as memail, m.phone as mphone, ';
         bbquery += 's.total as tblood, ';
         bbquery += '(select count(*) from registry r where r.bbid = b.bbid) as dcount, ';
-        bbquery += '(select count(*) from transfer t where t.bbid = b.bbid group by hid) as hcount ';
+        bbquery += '(select count(distinct t.hid) from transfer t where t.bbid = b.bbid) as hcount ';
         bbquery += 'from bloodbank b, manager m, storage s ';
         bbquery += 'where b.bbid = '+ req.params.bbid +' and b.bbid = m.bbid and b.bbid = s.bbid';
 

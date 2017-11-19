@@ -17,7 +17,10 @@ module.exports = (req, res) => {
         console.log(login_query);
         db.query(login_query, (error, results, fields) => {
            
-            if(error) throw error;
+            if(error) {
+                res.status(400).json({ 'message' : 'invalid credentials' });
+                console.log(error);
+            };
             
             if(results.length > 0){
                 console.log("login success");
@@ -27,6 +30,8 @@ module.exports = (req, res) => {
                     'phone' : results[0].phone,
                     'bbid' : results[0].bbid
                 });
+            }else{
+                res.status(400).json({ 'message' : 'invalid credentials' });
             }
             console.log(results);
         });

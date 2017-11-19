@@ -51,10 +51,16 @@ var checkHid = require('./routes/transfer/checkHID');
 var campList = require('./routes/campList');
 var bloodbanks = require('./routes/bloodBanks');
 var allCities = require('./routes/allCities');
-
 //bloodbank apis
 var bbdetails = require('./routes/bloodBanks/bloodbankDetails');
 var transferRequest = require('./routes/bloodBanks/transferRequest');
+//settings apis
+var managerDetails = require('./routes/settings/managerDetails');
+var bbankDetails = require('./routes/settings/bloodBankDetails');
+var changePassword = require('./routes/settings/changePassword');
+var editManager = require('./routes/settings/editManager');
+var editBloodBank = require('./routes/settings/editBloodBank');
+
 
 //Running Port
 
@@ -142,6 +148,14 @@ app.post('/update_transfer',updateTransfer);
 app.post('/delete_transfer', deleteTransfer);
 app.post('/create_transfer', createTransfer);
 app.get('/check_hid/:hid', checkHid);
+
+//settings apis
+app.get('/manager_details/:bbid', managerDetails);
+app.get('/blood_bank_details/:bbid', bbankDetails);
+app.post('/change_password', changePassword);
+app.post('/edit_manager', editManager);
+app.post('/edit_bloodbank', editBloodBank);
+
 
 app.listen(port, () => {
     console.log('Server running at localhost:'+port);
