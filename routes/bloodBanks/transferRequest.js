@@ -6,6 +6,8 @@ module.exports = (req, res) => {
 
     if( data.bbid && data.hid && data.pin && data.quantity && data.blood ){
         let query = 'select * from hospitals where hid = '+data.hid+' and pin = \''+data.pin+'\'';
+
+        console.log(query);
         db.query(query, (error, results, response)=>{
             if (error) throw error;
             if(results.length === 0){

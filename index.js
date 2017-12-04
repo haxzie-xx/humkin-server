@@ -13,6 +13,7 @@ var deleteReg = require('./routes/donor/deleteRegistration');
 var checkAdhaar = require('./routes/donor/checkAdhaar');
 var addToRegistry = require('./routes/donor/addToRegistry');
 var updateDonor = require('./routes/donor/updateDonor');
+var donorCount = require('./routes/donor/donorCount');
 //nurses imports
 var createNurse = require('./routes/nurses/createNurse');
 var checkNurseEmail = require('./routes/nurses/checkNurseEmail');
@@ -27,6 +28,7 @@ var storageDetails = require('./routes/storage/storageDetails');
 var checkRegDonor = require('./routes/donation/checkRegDonor');
 var createDonaion = require('./routes/donation/newDonation');
 var donationRecord = require('./routes/donation/donationRecord');
+var recordDetails = require('./routes/donation/recordDetails');
 //camps imports
 var createCamp = require('./routes/camps/createCamp');
 var allCamps = require('./routes/camps/allCamps');
@@ -101,12 +103,14 @@ app.post('/transfer_request', transferRequest);
 
 //donor apis
 app.post('/create_donor', createDonor);
-app.get('/all_donors/:bbid', allDonors);
+app.post    ('/all_donors/:bbid', allDonors);
 app.get('/donor_details/:bbid/:adhaar', donorDetails );
 app.post('/delete_donor', deleteReg );
 app.post('/check_adhaar', checkAdhaar);
 app.post('/add_to_registry', addToRegistry);
 app.post('/update_donor', updateDonor);
+app.get('/donor_count/:bbid', donorCount);
+
 
 
 //nurses apis
@@ -125,7 +129,7 @@ app.get('/storage_details/:bbid', storageDetails);
 app.post('/check_registered_donor', checkRegDonor);
 app.post('/create_donation', createDonaion);
 app.post('/donation_record/:bbid', donationRecord);
-
+app.get('/record_details/:bbid', recordDetails);
 //camp apis
 app.post('/create_camp', createCamp);
 app.post('/all_camps/:bbid', allCamps);

@@ -31,7 +31,8 @@ module.exports = (req, res) => {
                     'bbid' : results[0].bbid
                 });
             }else{
-                res.status(400).json({ 'message' : 'invalid credentials' });
+                console.log("error");
+                res.status(201).json({ 'message' : 'invalid credentials' });
             }
             console.log(results);
         });
