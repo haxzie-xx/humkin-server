@@ -103,7 +103,7 @@ app.post('/transfer_request', transferRequest);
 
 //donor apis
 app.post('/create_donor', createDonor);
-app.post    ('/all_donors/:bbid', allDonors);
+app.post('/all_donors/:bbid', allDonors);
 app.get('/donor_details/:bbid/:adhaar', donorDetails );
 app.post('/delete_donor', deleteReg );
 app.post('/check_adhaar', checkAdhaar);
