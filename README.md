@@ -1,5 +1,5 @@
 # HumKin Server
-Node server for [HumKin](https://github.com/haxzie/humkin), Open BloodBank Management System
+[Node](https://github.com/nodejs/node)/[Express.js](https://github.com/expressjs/express) server for [HumKin](https://github.com/haxzie/humkin), Open BloodBank Management System
 
 Make sure Node.js and npm are updated
 
@@ -23,4 +23,37 @@ Or run the app
 node index.js
 ```
 
-Api details will be updated shortly
+## Implementation
+
+Update the dbconfig.json
+```json
+{
+    "host": "localhost",
+    "user": "root",
+    "password": "root",
+    "database": "humkin"
+}
+```
+
+Connecting to the MySql Database
+`/db.js`
+```js
+var mysql = require('mysql');
+var config = require('./dbconfig.json');
+var connection;
+
+module.exports = () => {
+    if (!connection) {
+        connection = mysql.createConnection(config);
+        connection.connect(function(err){
+            if(!err) {
+                console.log('Database is connected!');
+            } else {
+                console.log('Error connecting database!');
+            }
+        });
+    }
+    return connection;
+}
+
+```
